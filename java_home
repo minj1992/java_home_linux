@@ -5,3 +5,59 @@ export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
   sudo ln -s /usr/lib/jvm/java-17-openjdk-amd64 /usr/java
 
 need to add in .bashrc and .profile 
+
+
+
+another waw of foing that help::  https://chatgpt.com/share/66fcd14b-7e30-8008-a82e-edc3b5a7fdea
+
+
+
+
+
+
+
+
+
+
+Let's break down the code snippet to explain what it does:
+
+bash
+Copy code
+jdk_dirs=($(ls -ld /usr/java/jdk*))
+jdk_ver=${jdk_dirs[@]:(-1)}
+Line 1: jdk_dirs=($(ls -ld /usr/java/jdk*))
+ls -ld /usr/java/jdk*:
+
+The ls -ld command lists all directories (or symbolic links) in the /usr/java/ directory that start with jdk.
+The * is a wildcard that matches any string after jdk, such as jdk11, jdk17, etc.
+$():
+
+This is command substitution in Bash. It runs the ls -ld /usr/java/jdk* command and captures its output.
+( ... ):
+
+The (...) syntax around $() converts the output of the command into an array.
+jdk_dirs= ...:
+
+The results of the ls -ld /usr/java/jdk* command are stored in the jdk_dirs array. Each item in the array corresponds to one of the directories or symbolic links found by ls.
+Line 2: jdk_ver=${jdk_dirs[@]:(-1)}
+${jdk_dirs[@]}:
+
+This syntax refers to all elements of the jdk_dirs array. The [@] retrieves all array elements.
+:(-1):
+
+This is a negative index in Bash, which retrieves the last element of the array. In this case, it grabs the last directory or symbolic link found by the previous ls command.
+jdk_ver= ...:
+
+The last element of the jdk_dirs array (which should be the latest JDK directory) is assigned to the jdk_ver variable.
+Summary:
+The script is listing all JDK directories under /usr/java/ that start with jdk.
+It stores the resulting list of directories in the jdk_dirs array.
+The script then takes the last entry in that array (which might represent the latest JDK version) and assigns it to the jdk_ver variable.
+This approach is likely used to identify the most recent or last installed JDK version on the system.
+
+
+
+
+
+
+
