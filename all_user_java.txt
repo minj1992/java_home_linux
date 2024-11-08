@@ -1,0 +1,4 @@
+export JAVA_HOME=$(readlink -f $(which java) | sed 's:/jre/bin/java::;s:/bin/java::')
+export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
+
+update above script in the end of the line of /etc/profile  then source /etc/profile
